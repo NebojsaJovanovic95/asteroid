@@ -1,6 +1,7 @@
 import pygame
 from logger import log_state
 from constants import SCREEN_WIDTH, SCREEN_HEIGHT
+from player import Player
 
 VERSION = pygame.version.ver
 
@@ -18,6 +19,10 @@ def main():
         ),
         pygame.RESIZABLE
     )
+    player = Player(
+        x = SCREEN_WIDTH / 2,
+        y = SCREEN_HEIGHT / 2
+    )
     while True:
         log_state()
         for event in pygame.event.get():
@@ -26,6 +31,7 @@ def main():
         screen.fill(
             "black"
         )
+        player.draw(screen)
         pygame.display.flip()
         dt = pygame.time.Clock().tick(60) / 1000
 
