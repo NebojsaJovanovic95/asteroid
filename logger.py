@@ -2,6 +2,7 @@ import inspect
 import json
 import math
 from datetime import datetime
+from constants import SCREEN_WIDTH, SCREEN_HEIGHT
 
 __all__ = ["log_state", "log_event"]
 
@@ -44,7 +45,8 @@ def log_state():
 
     for key, value in local_vars.items():
         if "pygame" in str(type(value)) and hasattr(value, "get_size"):
-            screen_size = value.get_size()
+            # screen_size = value.get_size()
+            screen_size = (SCREEN_WIDTH, SCREEN_HEIGHT)
 
         if hasattr(value, "__class__") and "Group" in value.__class__.__name__:
             sprites_data = []
