@@ -50,6 +50,16 @@ def main():
             item.draw(screen)
         dt = pygame.time.Clock().tick(60) / 1000
         for asteroid in asteroids:
+            asteroid_shot = False
+            for shot in shots:
+                if asteroid.collides_with(shot):
+                    log_event("asteroid_shot")
+                    asteroid.kill()
+                    shot.kill()
+                    asteroid_shot = True
+                    break
+            if asteroid_shot:
+                continue
             if asteroid.collides_with(player):
                 log_event("player_hit")
                 print("Game over!")
